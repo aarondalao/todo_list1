@@ -113,7 +113,7 @@ class _HomepageState extends State<Homepage> {
 
                             // deny () and {} inputs
                             FilteringTextInputFormatter.deny(
-                              RegExp(r"[{}]*[()]*"),
+                              RegExp(r"[{}]*[()]*[\[\]]*"),
                             ),
                           ],
                           onFieldSubmitted: (value) {},
@@ -148,7 +148,7 @@ class _HomepageState extends State<Homepage> {
 
                             // deny () and {} inputs
                             FilteringTextInputFormatter.deny(
-                              RegExp(r"[{}]*[()]*"),
+                              RegExp(r"[{}]*[()]*[\[\]]*"),
                             ),
                           ],
                           validator: (value) {

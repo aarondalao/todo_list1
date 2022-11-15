@@ -202,7 +202,7 @@ class _TodoWidgetState extends State<TodoWidget> {
 
                         // deny () and {} inputs
                         FilteringTextInputFormatter.deny(
-                          RegExp(r"[{}]*[()]*"),
+                          RegExp(r"[{}]*[()]*[\[\]]*"),
                         ),
                       ],
                       validator: (value) {
