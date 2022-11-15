@@ -2,6 +2,10 @@
 * written by: Aaron John Dave Dalao
 * 20083979@tafe.wa.edu.au / aaron.dalao@gmail.com
 *
+* resources used:
+  https://www.youtube.com/watch?v=dB0dOnc2k10
+  https://www.youtube.com/watch?v=JVpFNfnuOZM&list=PLMQAFLQy-nKch8Tk31y4i6MxMI9V9C-XO
+  
 * */
 
 // essential imports
@@ -38,7 +42,9 @@ main() {
   myLocator.registerLazySingleton<TodoDatasource>(() => DataServiceManager());
   runApp(ChangeNotifierProvider(
     create: (context) => TodoList(),
-    child: const TodoApp(myTitle: 'Todo List Application by Aaron Dalao',),
+    child: const TodoApp(
+      myTitle: 'Todo List Application by Aaron Dalao',
+    ),
   ));
 }
 

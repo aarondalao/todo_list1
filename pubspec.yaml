@@ -46,6 +46,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_launcher_icons: ^0.10.0
+  flutter_native_splash: ^2.2.14
   # the following below is just an extension to resolve id issues in hive
 
 
@@ -62,6 +63,29 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+# this section is for flutter icons_launcher:
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/list.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/icons/list.png"
+    background_color: "#F8F8FF"
+    theme_color: "#DCDCDC"
+  windows:
+    generate: true
+    image_path: "assets/icons/list.png"
+    icon_size: 48 # default: 48 min: 48 max: 256
+
+# this section is for flutter native splash 
+flutter_native_splash:
+  background_image: assets/splash/splash.png
+  image: assets/icons/list.png
+  #color: "#a47ae8"
+
 
 # The following section is specific to Flutter packages.
 flutter:
