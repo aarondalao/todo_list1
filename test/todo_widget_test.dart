@@ -6,13 +6,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:todo_list1/main.dart';
+import 'package:todo_list1/homepage.dart';
 
 void main(){
 
-  // todo: WIP
+  testWidgets("todo list widget has a title and a message", (WidgetTester tester) async{
 
-  // testWidgets("todo list widget has a title and a message", (widgetTester) async{
-  //
-  //
-  // });
+    // trigger a frame using title
+    await tester.pumpWidget(const TodoApp(myTitle: "hello world this is a test!"));
+  });
 }

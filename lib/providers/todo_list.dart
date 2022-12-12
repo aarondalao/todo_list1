@@ -15,10 +15,12 @@ import 'package:todo_list1/models/todo.dart';
 import 'dart:collection';
 import 'package:todo_list1/services/todo_datasource.dart';
 
-import '../services/data_service_manager.dart';
+
 
 class TodoList extends ChangeNotifier {
   GetIt getIt = GetIt.instance;
+
+
 
   // This is our data model. which holds our data which is a list of To_do’s
   List<Todo> _todos = [];
@@ -42,8 +44,14 @@ class TodoList extends ChangeNotifier {
     notifyListeners();
   }
 
+  // getDatasourceIdentifier() => _datasourceIdentifier;
 
-  Future<void> addTodo(Todo t) async{
+  // setDatasourceIdentifier(DataServiceManager ds) {
+  //   _datasourceIdentifier = ds;
+  //   notifyListeners();
+  // }
+
+  Future<void> addTodo(Todo t) async {
     getIt<TodoDatasource>().addTodo(t);
     notifyListeners();
   }
@@ -71,6 +79,9 @@ class TodoList extends ChangeNotifier {
     _todos[taskIndex].toggleCompleted();
     notifyListeners();
   }
+
+  // supplementary: add in the title what datasource the app is using
+  // void displayDatasource(ds) {}
 
 // toggle completed tasks/todos
 // void toggleTodo(Todo todo){

@@ -70,184 +70,177 @@ class _HomepageState extends State<Homepage> {
   void _openAddTodoWidget() {
     showDialog(
       context: context,
-      builder: (BuildContext context) =>
-          AlertDialog(
-            title: const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Center(
-                child: Text('Add a new Todo'),
-              ),
-            ),
-            content: Form(
-              key: _formKey,
-              child: SizedBox(
-                width: 100,
-                height: 300,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // title label text
+      builder: (BuildContext context) => AlertDialog(
+        title: const Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Center(
+            child: Text('Add a new Todo'),
+          ),
+        ),
+        content: Form(
+          key: _formKey,
+          child: SizedBox(
+            width: 100,
+            height: 300,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // title label text
 
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 3.0),
-                        child: Text('Todo Name'),
-                      ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 3.0),
+                    child: Text('Todo Name'),
+                  ),
 
-                      // title text form field
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 3.0),
-                        child: TextFormField(
-                          controller: _controlName,
-                          decoration:
+                  // title text form field
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3.0),
+                    child: TextFormField(
+                      controller: _controlName,
+                      decoration:
                           const InputDecoration(hintText: "your title here"),
-                          inputFormatters: [
+                      inputFormatters: [
+                        // dunno why this does not allow to input ANY CHARACTERS
+                        // even with allow method
+                        // FilteringTextInputFormatter.allow(
+                        //   RegExp(r"""^(?=.*[A-Z0-9])[\w.,!"'?\/$ ]+$"""),
+                        // )
 
-                            // dunno why this does not allow to input ANY CHARACTERS
-                            // even with allow method
-                            // FilteringTextInputFormatter.allow(
-                            //   RegExp(r"""^(?=.*[A-Z0-9])[\w.,!"'?\/$ ]+$"""),
-                            // )
-
-                            // deny () and {} inputs
-                            FilteringTextInputFormatter.deny(
-                              RegExp(r"[{}]*[()]*[\[\]]*"),
-                            ),
-                          ],
-                          onFieldSubmitted: (value) {},
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "must not be empty";
-                            }
-                          },
+                        // deny () and {} inputs
+                        FilteringTextInputFormatter.deny(
+                          RegExp(r"[{}]*[()]*[\[\]]*"),
                         ),
-                      ),
+                      ],
+                      onFieldSubmitted: (value) {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "must not be empty";
+                        }
+                      },
+                    ),
+                  ),
 
-                      // content label text
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 3.0),
-                        child: Text('Description'),
-                      ),
+                  // content label text
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 3.0),
+                    child: Text('Description'),
+                  ),
 
-                      // content text form field
+                  // content text form field
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3.0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: "your todos description here"),
+                      onFieldSubmitted: (value) {},
+                      inputFormatters: [
+                        // dunno why this does not allow to input ANY CHARACTERS
+                        // even with allow method
+                        // FilteringTextInputFormatter.allow(
+                        //   RegExp(r"""^(?=.*[A-Z0-9])[\w.,!"'?\/$ ]+$"""),
+                        // )
+
+                        // deny () and {} inputs
+                        FilteringTextInputFormatter.deny(
+                          RegExp(r"[{}]*[()]*[\[\]]*"),
+                        ),
+                      ],
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "must not be empty";
+                        }
+                      },
+                      controller: _controlDescription,
+                    ),
+                  ),
+
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // go back button
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 3.0),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                              hintText: "your todos description here"),
-                          onFieldSubmitted: (value) {},
-                          inputFormatters: [
-
-                            // dunno why this does not allow to input ANY CHARACTERS
-                            // even with allow method
-                            // FilteringTextInputFormatter.allow(
-                            //   RegExp(r"""^(?=.*[A-Z0-9])[\w.,!"'?\/$ ]+$"""),
-                            // )
-
-                            // deny () and {} inputs
-                            FilteringTextInputFormatter.deny(
-                              RegExp(r"[{}]*[()]*[\[\]]*"),
-                            ),
-                          ],
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "must not be empty";
-                            }
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 3.0, horizontal: 10.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {});
+                            Navigator.of(context, rootNavigator: true).pop();
                           },
-                          controller: _controlDescription,
+                          child: const Text("Go back"),
                         ),
                       ),
 
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // go back button
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 3.0, horizontal: 10.0),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {});
-                                Navigator.of(context, rootNavigator: true)
-                                    .pop();
-                              },
-                              child: const Text("Go back"),
-                            ),
-                          ),
+                      // Submit button
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 3.0, horizontal: 10.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // OLD WAY
+                            // setState(() {
+                            //   // pass in the to_do object by calling the constructor passing through the controller.text property
+                            //   todos.add(To_do(
+                            //     name: _controlName.text,
+                            //     description: _controlDescription.text,
+                            //   ));
+                            // });
 
-                          // Submit button
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 3.0, horizontal: 10.0),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                // OLD WAY
-                                // setState(() {
-                                //   // pass in the to_do object by calling the constructor passing through the controller.text property
-                                //   todos.add(To_do(
-                                //     name: _controlName.text,
-                                //     description: _controlDescription.text,
-                                //   ));
-                                // });
+                            // other way
+                            // context.read<TodoList>().add(
+                            //       To_do(
+                            //           name: _controlName.text,
+                            //           description: _controlDescription.text),
+                            //     );
 
-                                // other way
-                                // context.read<TodoList>().add(
-                                //       To_do(
-                                //           name: _controlName.text,
-                                //           description: _controlDescription.text),
-                                //     );
+                            // 13/11/2022
+                            // this will be transfered to provider to_do_list.dart
+                            // using getIt
+                            // getIt<TodoDatasource>().addTodo(Todo(
+                            //   name: _controlName.text,
+                            //   description: _controlDescription.text,
+                            //   completed: 0, // default
+                            // ));
+                            //
+                            // _controlName.clear();
+                            // _controlDescription.clear();
+                            // setState(() {});
 
-                                // 13/11/2022
-                                // this will be transfered to provider to_do_list.dart
-                                // using getIt
-                                // getIt<TodoDatasource>().addTodo(Todo(
-                                //   name: _controlName.text,
-                                //   description: _controlDescription.text,
-                                //   completed: 0, // default
-                                // ));
-                                //
-                                // _controlName.clear();
-                                // _controlDescription.clear();
-                                // setState(() {});
+                            try {
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
 
-                                try{
-                                  if (_formKey.currentState!.validate()) {
-                                    _formKey.currentState!.save();
-
-                                    // provider
-                                    Provider.of<TodoList>(context, listen: false)
-                                        .addTodo(Todo(
-                                      name: _controlName.text,
-                                      description: _controlDescription.text,
-                                      completed: 0, // default
-                                    ));
-                                    _controlName.clear();
-                                    _controlDescription.clear();
+                                // provider
+                                Provider.of<TodoList>(context, listen: false)
+                                    .addTodo(Todo(
+                                  name: _controlName.text,
+                                  description: _controlDescription.text,
+                                  completed: 0, // default
+                                ));
+                                _controlName.clear();
+                                _controlDescription.clear();
                               }
+                            } catch (e) {
+                              print("Error: $e");
+                            } finally {
+                              setState(() {});
+                              tl.refresh();
                             }
-                                catch(e){
-                                  print("Error: $e");
-                                }
-                                finally{
-                                  setState(() {
-                                  });
-                                  tl.refresh();
-                                }
-                              },
-                              child: const Text('Submit'),
-                            ),
-                          ),
-                        ],
+                          },
+                          child: const Text('Submit'),
+                        ),
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
             ),
           ),
+        ),
+      ),
     );
   }
 
@@ -255,7 +248,8 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Todo List '),
+        title: const Text(
+            'Todo List'),
         // ===============================================================================
         // exercise 2
         actions: <Widget>[

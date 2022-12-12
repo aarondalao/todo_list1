@@ -6,6 +6,9 @@
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
+import 'package:path/path.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list1/providers/todo_list.dart';
 import 'package:todo_list1/services/local_hive_datasource.dart';
 import 'package:todo_list1/services/local_sqlite_datasource.dart';
 import 'package:todo_list1/services/remote_api_datasource.dart';
@@ -18,11 +21,15 @@ class DataServiceManager implements TodoDatasource {
   late final TodoDatasource _local;
   final TodoDatasource _remote = RemoteApiDatasource();
 
+
   DataServiceManager() {
     if (kIsWeb) {
       _local = LocalHiveDatasource();
+      
+
     } else {
       _local = LocalSQLiteDatasource();
+
     }
   }
 
@@ -44,6 +51,7 @@ class DataServiceManager implements TodoDatasource {
         await Connectivity().checkConnectivity() == ConnectivityResult.none) {
       return false;
     }
+
     return true;
   }
 

@@ -18,66 +18,94 @@ void main() {
       completed: 0);
 
   final Map<String, dynamic> mockTodo2 = {
-    'id': "mockId1",
-    'name': "mockTodoName1",
-    'description': "mockTodoDescription1",
-    'completed': 0,
-  };
-
-  final Map<String, dynamic> mockTodo3 = {
-    'id': "null",
-    'name': "null",
-    'description': "null",
+    'id': null,
+    'name': null,
+    'description': null,
     'completed': 1,
   };
 
   final testTodo1 = Todo(completed: 0);
   final testTodo2 = Todo(completed: 1);
 
-
-
   test('test #1: check if model is working as it should', () {
-    expect(mockTodo1.id, 'mockId1');
-    expect(mockTodo1.name, 'mockTodoName1');
-    expect(mockTodo1.description, 'mockTodoDescription1');
-    expect(mockTodo1.completed, 0);
+    print("test #1: check model is working with mocked values");
+    print("""
+    Display actual mock data:
+    id: 'mockId1'
+    name: 'mockTodoName11'
+    description: "mockTodoDescription1"
+    completed: 0
+    """);
+
+    expect(mockTodo1.id, equals('mockId1'),
+        reason: "the expected value should match the actual value");
+    expect(mockTodo1.name, equals("mockTodoName1"),
+        reason: "the expected value should match the actual value");
+    expect(mockTodo1.description, equals('mockTodoDescription1'),
+        reason: "the expected value should match the actual value");
+    expect(mockTodo1.completed, equals(0),
+        reason: "the expected value should match the actual value");
+    print("==================================================================");
   });
 
   test("test #2: check if this is still working", () {
-    expect(mockTodo2["id"], "mockId1" );
-    expect(mockTodo2["name"], "mockTodoName1" );
-    expect(mockTodo2["description"], "mockTodoDescription1" );
-    expect(mockTodo2["completed"], 0 );
+    print("test #2: check model is working with null values");
+    print("""
+    Display actual mock data:
+    id: null
+    name: null
+    description: null
+    completed: 1
+    """);
+    expect(mockTodo2["id"], equals(null),
+        reason: "the expected value should match the actual value");
+    expect(mockTodo2["name"], equals(null),
+        reason: "the expected value should match the actual value");
+    expect(mockTodo2["description"], equals(null),
+        reason: "the expected value should match the actual value");
+    expect(mockTodo2["completed"], equals(1),
+        reason: "the expected value should match the actual value");
+    print("==================================================================");
   });
 
-  test("test #3: check if this is still working", () {
-    expect(mockTodo3["id"], "null" );
-    expect(mockTodo3["name"], "null" );
-    expect(mockTodo3["description"], "null" );
-    expect(mockTodo3["completed"], 1 );
-  });
-
-  test("Test #4: completed toggle must change if the value is either 0 or 1", () {
-
+  test("Test #3: completed toggle must change if the value is either 0 or 1",
+      () {
     // act
     var actualValueTestTodo1 = 1;
     var actualValueTestTodo2 = 0;
 
+    print("""
+      Display actual mock data:
+      actualValueTestTodo1 is = $actualValueTestTodo1
+      actualValueTestTodo2 is = $actualValueTestTodo2
+    """);
     // assert
-    expect(testTodo1.toggleCompleted(), actualValueTestTodo1);
-    expect(testTodo2.toggleCompleted(), actualValueTestTodo2);
+    expect(testTodo1.toggleCompleted(), equals(actualValueTestTodo1),
+        reason: "the expected value should match the actual value");
+    expect(testTodo2.toggleCompleted(), equals(actualValueTestTodo2),
+        reason: "the expected value should match the actual value");
+    print("==================================================================");
   });
 
-  test("test #5: test toMap()", () {
-
-    Map<String,dynamic> testTodoMap = {
+  test("test #4: test toMap()", () {
+    Map<String, dynamic> testTodoMap = {
       'id': "mockId1",
       'name': "mockTodoName1",
       'description': "mockTodoDescription1",
       'completed': 0,
     };
 
-    expect(mockTodo1.toMap(), testTodoMap);
-  });
+    print("""
+    Display actual mock data:
+      testTodoMap = {
+      'id': "mockId1",
+      'name': "mockTodoName1",
+      'description': "mockTodoDescription1",
+      'completed': 0,
+    };
+    """);
 
+    expect(mockTodo1.toMap(), equals(testTodoMap),
+        reason: "the expected value should match the actual value");
+  });
 }

@@ -42,17 +42,23 @@ dependencies:
   http: ^0.13.5
   firebase_database: ^10.0.4
 
+ 
+
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_launcher_icons: ^0.10.0
   flutter_native_splash: ^2.2.14
-  # the following below is just an extension to resolve id issues in hive
+  sqflite_common_ffi: ^2.2.0+1
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+   # testing for sqflite
+   
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
